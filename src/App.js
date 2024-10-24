@@ -1,25 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
+const App = () => {
+  const [button, setButton] = useState(0);
+  console.log("button>>>>>>>", button);
+
+  const handleButton = (e) => {
+    if (e === "increase") {
+      setButton(button + 1);
+    } else if (e === "decrease") {
+      setButton(button === 0 ? 0 : button - 1);
+    } else if (e === "reset") {
+      setButton(0);
+    }
+  };
+
+  const buttonStyle = {
+    padding: "10px 20px",
+    margin: "5px",
+    fontSize: "16px",
+    borderRadius: "5px",
+    cursor: "pointer",
+  };
+
+  const increaseButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: "green",
+    color: "white",
+  };
+
+  const decreaseButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: "red",
+    color: "white",
+  };
+
+  const resetButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: "orange",
+    color: "white",
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ textAlign: "center", marginTop: "20px" }}>
+      <h3>{button}</h3>
+      <button
+        style={increaseButtonStyle}
+        onClick={() => handleButton("increase")}
+      >
+        Increase
+      </button>
+      <button
+        style={decreaseButtonStyle}
+        onClick={() => handleButton("decrease")}
+      >
+        Decrease
+      </button>
+      <button style={resetButtonStyle} onClick={() => handleButton("reset")}>
+        Reset
+      </button>
     </div>
   );
-}
+};
 
 export default App;
